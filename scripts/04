@@ -1,10 +1,13 @@
 #!/bin/bash
 
-fc=""
-fccron=/etc/crontab
-fccron=/home/rogerskyline/04
-fic=`find $fccron -mtime -1`
-if [ ! -z $fic ]
-	then
-	echo "Cron tab modified" | mail -s "Contab modified" root
+if [ ! -f ~/cronLastUpdate ]; then
+	`touch ~/cronLastUpdate`
+fi
+
+lastUpdate=$(cat ~/cronLastUpdate)
+cron=$(md5sum /var/spool/cron/crontabs/vagrant)
+
+if [ "$lastUpdate" != "$cron"  ]; then
+	echo "Crontab modified" | mail -s "Contab" root
+	`md5sum /var/spool/cron/crontabs/vagrant > ~/cronLastUpdate`
 fi
