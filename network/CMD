@@ -1,4 +1,0 @@
-Q02 -> this command works too ->  networksetup -getinfo Ethernet
-
-Q08 -> host -t ns slash16.org OR host -a slash16.org
-Q09 -> curl http://ifconfig.me/
